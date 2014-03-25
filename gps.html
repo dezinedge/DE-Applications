@@ -29,6 +29,9 @@
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
+		
+		GetLocation(position.coords.latitude,position.coords.longitude);				
+								
     }
 
     // onError Callback receives a PositionError object
@@ -38,6 +41,21 @@
               'message: ' + error.message + '\n');
     }
 
+	function GetLocation(Lattitude,Longitude)
+	{
+			$.ajax({
+				url : 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+Lattitude+','+Longitude+'&sensor=true',
+				type: 'GET',
+				success : getMapData
+			});
+	}
+	
+	function getMapData(msg)
+	{
+		var elLocationName = document.getElementById('locationName');
+		elLocationName.innerHTML = msg.results[0].formatted_address;
+	}
+	
     </script>
 </head>
 <body>
@@ -49,6 +67,7 @@
         </div>
         <div data-role="content">
            <p id="geolocation">Finding geolocation...</p>
+		   <p id="locationName"></p>
         </div>
         <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false"
