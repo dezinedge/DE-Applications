@@ -30,12 +30,14 @@
 		
 		function shuffleNumber() {
 			var newNum = getRandomInt(1,6);
-			document.querySelector("#die").innerHTML = newNum;
+			var stream = 'X: '+lastX+'Y: '+lastY;+'Z: '+lastZ;	
+			document.querySelector("#die").innerHTML = stream;
 		}
 		
 		function getRandomInt(min, max) {
 		  return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
+		
 		function gotMovement(a) {
 				if(!lastX) {
 					lastX = a.x;
@@ -63,13 +65,14 @@
 				lastY = a.y;
 				lastZ = a.z;
 				
+					
 			}
     </script>
 	<style>
 	#die {
 		font-weight:bold;
 		font-family: Arial;
-		font-size: 12em;
+		font-size: 6em;
 		width:100%;
 		height:100%;
 		margin-left: auto;
@@ -82,8 +85,8 @@
     <div data-role="page" data-theme='b' id="pgAccelerometer">
         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <h1>
-                DE | Accelerometer Sample</h1>
-            <a href="#pgHome"><i class='icon-arrows'></i></a>
+                DE | Accelerometer</h1>
+            <a href="#pgHome"><i class='icon-random'></i></a>
         </div>
         <div data-role="content">
            <div id="die"></div>
