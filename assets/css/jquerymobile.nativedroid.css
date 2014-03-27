@@ -1217,11 +1217,11 @@ progress  {
 	left: 0px;
 	width: 100%;
 	height: 250px;
-	background-image: url("http://nativedroid.godesign.ch/res/img/droid.png");
+	background-image: url("../img/doctDroid.png");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: clip;
-		
+		color:#fff;
 	-webkit-animation: moveUp 0.5s 1;
 	-moz-animation: moveUp 0.5s 1;
 	-o-animation: moveUp 0.5s 1;
@@ -1233,11 +1233,11 @@ progress  {
 	-ms-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
 	
-	-webkit-animation-delay: 1s;
-	-moz-animation-delay: 1s;
-	-ms-animation-delay: 1s;
-	-o-animation-delay: 1s;
-	animation-delay: 1s;
+	-webkit-animation-delay: 2s;
+	-moz-animation-delay: 2s;
+	-ms-animation-delay: 2s;
+	-o-animation-delay: 2s;
+	animation-delay: 2s;
 }
 
 .nativeDroidLockscreen {

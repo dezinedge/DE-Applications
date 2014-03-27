@@ -17,46 +17,39 @@
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
-        
+            
         }
+        
     </script>
 </head>
 <body>
     <div data-role="page" data-theme='b' id="pgHome">
-        
         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <h1>
-                CITYCARE AURANGABAD</h1>
+                Dezinedge Applications</h1>
             <a href="#pgHome"><i class='icon-windows'></i></a>
         </div>
         <div data-role="content">
-		    <!--  <div data-nativedroid-plugin="splashscreen" data-nativedroid-splashscreen-time="4" data-nativedroid-splashscreen-animation="fadeOut" data-nativedroid-background="assets/img/splashscreenbg.png">
+		<div data-nativedroid-plugin="splashscreen" data-nativedroid-splashscreen-time="6" data-nativedroid-splashscreen-animation="fadeOut" data-nativedroid-background="assets/img/splashscreenbg.png">
 				<div class='splashScreenExample'>
 					<h1>CityCare</h1>
 					<h2>Aurangabad</h2>
 					<h3>Reach The Care You Need</h3>
+					
 					<div class='splashScreenDroid'></div>
-				</div>		
-			</div>	-->	
+				</div>				
+			</div>
             <ul data-role="listview" id="ulHomeList" data-inset="false" data-icon="true" data-divider-theme="b">
-                <li><a href="gps.html" data-ajax="false"><i class='icon-stethoscope'></i>&nbsp;Doctors</a></li>
-				<li><a href="accelerometer.html" data-ajax="false"><i class='icon-hospital'></i>&nbsp;Hospitals</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-medkit'></i>&nbsp;Medical Stores</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-beaker'></i>&nbsp;Pathalogy Labs</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-tint'></i>&nbsp;Blood Banks</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-leaf'></i>&nbsp;Charitable Trusts</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-ambulance'></i>&nbsp;Emergency Services</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-smile'></i>&nbsp;Living Healthy</a></li>
-                <li><a href="accelerometer.html" data-ajax="false"><i class='icon-book'></i>&nbsp;Health Quotes</a></li>
+                <li><a href="gps.html" data-ajax="false"><i class='icon-map-marker'></i>&nbsp;GPS</a></li>
+				<li><a href="accelerometer.html" data-ajax="false"><i class='icon-random'></i>&nbsp;Accelerometer</a></li>
             </ul>
         </div>
-            
         <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme='b'>
             <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false"
                 data-theme='b'>
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="registration.html" data-ajax="false" data-icon="user-md">Subscribe</a></li>
+                        <li><a href="#pgHome" data-icon="home">Home</a></li>
                         <li><a href="#dvAbout" data-icon="info">About</a></li>
                         <li><a href="#" data-icon="phone">Contact</a></li>
                     </ul>
