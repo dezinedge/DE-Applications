@@ -32,18 +32,20 @@
             elLongitude.value = position.coords.longitude;
         }
         
-        function onError(){}
+        function onError(){alert('error occured');}
         
         function capturePhoto(){
-            navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
+            navigator.camera.getPicture(onPhotoURISuccess,onError,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
         }
         
-        function uploadPhoto(data){
+        function onPhotoURISuccess(imageURI){
         // this is where you would send the image file to server
          
         //output image to screen
+            alert('success');
             var elCameraPic = document.getElementById('imgHospital');
-            elCameraPic.src = "data:image/jpeg;base64," + data;
+            elCameraPic.style.display = 'block';
+            elCameraPic.src = imageURI;
         }
     </script>
 </head>
