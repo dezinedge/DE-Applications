@@ -58,7 +58,7 @@
             <form>
                 <ul data-role="listview" data-inset="true">
                     
-                    <img id="imgHospital" id="imgHospital" src="assets/img/camera.png" style="width: 120px;" />
+                    <img id="imgHospital" id="imgHospital" src="assets/img/camera.png" style="width: 120px;" onclick="capturePhoto();" />
                      
                     <li data-role="fieldcontain">
                     <input type="text" name="txtHosipital" id="txtHosipital" data-clear-btn="true" placeholder="Type hospital name here..." 
@@ -71,7 +71,7 @@
                         <textarea cols="40" rows="8" name="txtAddress2" id="txtAddress2" placeholder="Type Address 2 here..." style="width: 100%;"></textarea>
                     </li>
                     <li data-role="fieldcontain">
-                        <input type="button" name="btnGetLocation" id="btnGetLocation" value="Get Location" data-clear-btn="true" title="Type hospital name here..."/>
+                        <input type="button" onclick="GetLocation();" name="btnGetLocation" id="btnGetLocation" value="Get Location" data-clear-btn="true" title="Type hospital name here..."/>
                     </li>
                     <li data-role="fieldcontain">
                     <input type="text" disabled="disabled" name="txtLatitude" id="txtLatitude" data-clear-btn="true" placeholder="Click get location to get Latitude" 
