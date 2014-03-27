@@ -48,6 +48,24 @@
             elCameraPic.style.display = 'block';
             elCameraPic.src = imageURI;
         }
+        
+        function onSubmit()
+        {
+            alert('Data has been stored successfully!');
+            var elLatitude = document.getElementById('txtLatitude');
+            var elLongitude = document.getElementById('txtLongitude');
+            var txtHosipital = document.getElementById('txtHosipital');
+            var txtAddress1 = document.getElementById('txtAddress1');
+            var txtAddress2 = document.getElementById('txtAddress2');
+            elLatitude.value ='';
+            elLongitude.value ='';
+            txtHosipital.value ='';
+            txtAddress1.value ='';
+            txtAddress2.value ='';
+            var elCameraPic = document.getElementById('imgHospital');
+            elCameraPic.style.width = '120px';
+            elCameraPic.src = 'assets/img/camera.png';
+        }
     </script>
 </head>
 <body>
@@ -85,7 +103,7 @@
                     style="width: 100%;" />
                     </li>
                     <li data-role="fieldcontain">
-                        <input type="button" name="btnSave" id="btnSave" value="Save" data-clear-btn="true"/>
+                        <input type="button" name="btnSave" id="btnSave" value="Save" data-clear-btn="true" onclick="onSubmit();"/>
                     </li>
                 </ul>
             </form>
