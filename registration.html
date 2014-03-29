@@ -19,15 +19,19 @@
         
         document.addEventListener("deviceready", onDeviceReady, false);
 
+        $(function(){
+            FillDropdown();
+        });
+        
         function onDeviceReady() {
             pictureSource=navigator.camera.PictureSourceType;
             destinationType=navigator.camera.DestinationType;
-            FillDropdown();
+            
         }
         
         function FillDropdown()
         {
-            $.ajax({
+          $.ajax({
            	url: 'http://aurangabadcitycare.com/dbtypes.php',
             type: 'POST',
             data: {},
@@ -41,10 +45,10 @@
                $("#ddlTypes").html(ddldata);
             },
             error: function() { 
+               alert('error');     
             },
         	crossDomain: true
         	});
-          });
         }
         
         function GetLocation()
