@@ -16,7 +16,7 @@
     <script type="text/javascript">
         var pictureSource;   // picture source
         var destinationType; // sets the format of returned value
-        var imageDataSrv;
+        var imageDataSrv;var imageDataSrvDataUri;
         
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -42,8 +42,8 @@
             var txtHosipital = document.getElementById('txtHosipital');
             var txtAddress1 = document.getElementById('txtAddress1');
             var txtAddress2 = document.getElementById('txtAddress2');
-            var pDbImage = '';
-                               
+            var pDbImage = imageDataSrvDataUri;
+            alert(imageDataSrvDataUri);           
             $.ajax({
                	url: 'http://aurangabadcitycare.com/index.php',
                 type: 'POST',
@@ -118,6 +118,23 @@
             var elCameraPic = document.getElementById('imgHospital');
             elCameraPic.style.display = 'block';
             elCameraPic.src = imageURI;
+            imageDataSrv = imageURI;
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        }
+        
+        function gotFS(fileSystem) {
+            fileSystem.root.getFile(imageDataSrv, null, readDataUrl, fail);
+        }
+        
+        function fail(){alert('failed');}
+        
+        function readDataUrl(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                console.log("Read as data URL");
+                console.log(evt.target.result);
+            };
+           imageDataSrvDataUri = reader.readAsDataURL(file);
         }
         
         function onSubmit()
