@@ -42,12 +42,13 @@
             var txtHosipital = document.getElementById('txtHosipital');
             var txtAddress1 = document.getElementById('txtAddress1');
             var txtAddress2 = document.getElementById('txtAddress2');
-               
+            var pDbImage = '';
+                               
             $.ajax({
                	url: 'http://aurangabadcitycare.com/index.php',
                 type: 'POST',
                 data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
-                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:DbImage.src,pDbTypeId:ddlTypes.value },
+                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:DbImage,pDbTypeId:ddlTypes.value },
                 datatype: 'application/json',
                 success: function(msg) {
                     alert('Data has been stored successfully!');
