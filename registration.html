@@ -32,13 +32,18 @@
         
         function AddDatabase()
         {
+            
+            var elCameraPic = document.getElementById('imgHospital');
+            var DbImage = getBase64FromImageUrl(elCameraPic.src); 
+            
+            alert(DbImage);
+            
             var ddlTypes = document.getElementById('ddlTypes');
             var elLatitude = document.getElementById('txtLatitude');
             var elLongitude = document.getElementById('txtLongitude');
             var txtHosipital = document.getElementById('txtHosipital');
             var txtAddress1 = document.getElementById('txtAddress1');
             var txtAddress2 = document.getElementById('txtAddress2');
-            var DbImage = document.getElementById('imgHospital');  
                
             $.ajax({
                	url: 'http://aurangabadcitycare.com/index.php',
@@ -91,6 +96,25 @@
         	});
         }
         
+       function getBase64FromImageUrl(URL) {
+            var img = new Image();
+            img.src = URL;
+            img.onload = function () {
+       
+            var canvas = document.createElement("canvas");
+            canvas.width =this.width;
+            canvas.height =this.height;
+        
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(this, 0, 0);
+        
+            var dataURL = canvas.toDataURL("image/png");
+        
+            return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            
+            }
+        }
+        
         function GetLocation()
         {
             navigator.geolocation.getCurrentPosition(onSuccess, onError,{maximumAge: 300000, timeout:10000, enableHighAccuracy : true});   
@@ -106,17 +130,7 @@
         function onError(){alert('error occured');}
         
         function capturePhoto(){
-            //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
-            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:60 });
-        }
-        
-        function onPhotoDataSuccess(imageData)
-        {
-            imageDataSrv = imageData;
-            alert('image uploaded success');
-            var elCameraPic = document.getElementById('imgHospital');
-            elCameraPic.style.display = 'block';
-            elCameraPic.src = "data:image/jpeg;base64," + imageData;
+            navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
         }
         
         function onPhotoURISuccess(imageURI){
