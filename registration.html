@@ -34,7 +34,6 @@
         {
             
             var elCameraPic = document.getElementById('imgHospital');
-            alert(elCameraPic.src);
             
             var ddlTypes = document.getElementById('ddlTypes');
             var elLatitude = document.getElementById('txtLatitude');
@@ -123,12 +122,24 @@
         }
         
         function gotFS(fileSystem) {
-            fileSystem.root.getFile(imageDataSrv, null, readDataUrl, fail);
+            alert('gotFS');
+            fileSystem.root.getFile(imageDataSrv, null, gotFileEntry, fail);
+        }
+        
+        function gotFileEntry(fileEntry) {
+            alert('gotFileEntry');
+            fileEntry.file(gotFile, fail);
+        }
+        
+        function gotFile(file){
+            alert('gotFile');
+            readDataUrl(file);
         }
         
         function fail(){alert('failed');}
         
         function readDataUrl(file) {
+            alert('readDataUrl');
             var reader = new FileReader();
             reader.onloadend = function(evt) {
                 console.log("Read as data URL");
