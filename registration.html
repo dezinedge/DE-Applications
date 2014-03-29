@@ -29,6 +29,38 @@
             
         }
         
+        function AddDatabase()
+        {
+            var ddlTypes = document.getElementById('ddlTypes');
+            var elLatitude = document.getElementById('txtLatitude');
+            var elLongitude = document.getElementById('txtLongitude');
+            var txtHosipital = document.getElementById('txtHosipital');
+            var txtAddress1 = document.getElementById('txtAddress1');
+            var txtAddress2 = document.getElementById('txtAddress2'); 
+               
+            $.ajax({
+               	url: 'http://aurangabadcitycare.com/index.php',
+                type: 'POST',
+                data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
+                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:"",pDbTypeId:ddlTypes.value },
+                datatype: 'application/json',
+                success: function(msg) {
+                    alert('Data has been stored successfully!');
+                    elLatitude.value ='';
+                    elLongitude.value ='';
+                    txtHosipital.value ='';
+                    txtAddress1.value ='';
+                    txtAddress2.value ='';
+                    var elCameraPic = document.getElementById('imgHospital');
+                    elCameraPic.style.width = '120px';
+                    elCameraPic.src = 'assets/img/camera.png';
+                    ddlTypes.value = -1;
+                },
+                error: function() { alert('Failed!'); },
+        	    crossDomain: true
+        	});
+        }
+        
         function FillDropdown()
         {
           $.ajax({
@@ -40,7 +72,13 @@
                var obj = jQuery.parseJSON(msg);
                var ddldata = '';  
                $.each(obj,function(idx,db){
-                   ddldata += '<option value="'+db.data.DbTypeId+'">'+db.data.DbType+'</option>';
+                    if(idx == 0){
+                        ddldata += '<option value="'+db.data.DbTypeId+'" selected="selected">'+db.data.DbType+'</option>';
+                    }
+                    else
+                    {
+                        ddldata += '<option value="'+db.data.DbTypeId+'">'+db.data.DbType+'</option>';
+                    }
                }); 
                $("#ddlTypes").html(ddldata);
             },
@@ -134,7 +172,7 @@
                     style="width: 100%;" />
                     </li>
                     <li data-role="fieldcontain">
-                        <input type="button" name="btnSave" id="btnSave" value="Save" data-clear-btn="true" onclick="onSubmit();"/>
+                        <input type="button" name="btnSave" id="btnSave" value="Save" data-clear-btn="true" onclick="AddDatabase();"/>
                     </li>
                 </ul>
             </form>
