@@ -34,9 +34,7 @@
         {
             
             var elCameraPic = document.getElementById('imgHospital');
-            var DbImage = getBase64FromImageUrl(elCameraPic.src); 
-            
-            alert(DbImage);
+            alert(elCameraPic.src);
             
             var ddlTypes = document.getElementById('ddlTypes');
             var elLatitude = document.getElementById('txtLatitude');
@@ -94,25 +92,6 @@
             },
         	crossDomain: true
         	});
-        }
-        
-       function getBase64FromImageUrl(URL) {
-            var img = new Image();
-            img.src = URL;
-            img.onload = function () {
-       
-            var canvas = document.createElement("canvas");
-            canvas.width =this.width;
-            canvas.height =this.height;
-        
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(this, 0, 0);
-        
-            var dataURL = canvas.toDataURL("image/png");
-            alert(dataURL);
-            //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-            return dataURL;
-            }
         }
         
         function GetLocation()
