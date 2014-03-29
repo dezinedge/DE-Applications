@@ -22,6 +22,29 @@
         function onDeviceReady() {
             pictureSource=navigator.camera.PictureSourceType;
             destinationType=navigator.camera.DestinationType;
+            FillDropdown();
+        }
+        
+        function FillDropdown()
+        {
+            $.ajax({
+           	url: 'http://aurangabadcitycare.com/dbtypes.php',
+            type: 'POST',
+            data: {},
+            datatype: 'application/json',
+            success: function(msg) { 
+               var obj = jQuery.parseJSON(msg);
+               var ddldata = '';  
+               $.each(obj,function(idx,db){
+                   ddldata += '<option value="'+db.data.DbTypeId+'">'+db.data.DbType+'</option>';
+               }); 
+               $("#ddlTypes").html(ddldata);
+            },
+            error: function() { 
+            },
+        	crossDomain: true
+        	});
+          });
         }
         
         function GetLocation()
@@ -81,6 +104,10 @@
                     
                     <img id="imgHospital" id="imgHospital" src="assets/img/camera.png" style="width: 120px;" onclick="capturePhoto();" />
                      
+                     <li data-role="fieldcontain">
+                    <select id="ddlTypes" name="ddlTypes"></select>
+                    </li>
+                    
                     <li data-role="fieldcontain">
                     <input type="text" name="txtHosipital" id="txtHosipital" data-clear-btn="true" placeholder="Type hospital name here..." 
                     style="width: 100%;" />
