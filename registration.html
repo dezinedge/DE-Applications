@@ -109,7 +109,8 @@
         function onError(){alert('error occured');}
         
         function capturePhoto(){
-            navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
+            //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
+            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:60,destinationType: Camera.DestinationType.DATA_URL });
         }
         
         function onPhotoURISuccess(imageURI){
@@ -118,9 +119,18 @@
             elCameraPic.style.display = 'block';
             elCameraPic.src = imageURI;
             imageDataSrv = imageURI;
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+            //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
         }
         
+        function onPhotoDataSuccess(imageData)
+        {
+            var image = document.getElementById('imgHospital');
+            image.src = "data:image/jpeg;base64," + imageData;
+            imageDataSrv = imageData;
+            alert('works');
+        }
+        
+        /*
         function gotFS(fileSystem) {
             alert('gotFS');
             alert(imageDataSrv);
@@ -148,7 +158,7 @@
             };
            imageDataSrvDataUri = reader.readAsDataURL(file);
         }
-        
+        */
         function onSubmit()
         {
             alert('Data has been stored successfully!');
