@@ -31,10 +31,7 @@
         }
         
         function AddDatabase()
-        {
-            
-            var elCameraPic = document.getElementById('imgHospital');
-            
+        {   
             var ddlTypes = document.getElementById('ddlTypes');
             var elLatitude = document.getElementById('txtLatitude');
             var elLongitude = document.getElementById('txtLongitude');
@@ -42,7 +39,7 @@
             var txtAddress1 = document.getElementById('txtAddress1');
             var txtAddress2 = document.getElementById('txtAddress2');
             var pDbImage = imageDataSrv;
-            alert(imageDataSrvDataUri);           
+                    
             $.ajax({
                	url: 'http://aurangabadcitycare.com/index.php',
                 type: 'POST',
@@ -129,53 +126,7 @@
             imageDataSrv = imageData;
             alert('works');
         }
-        
-        /*
-        function gotFS(fileSystem) {
-            alert('gotFS');
-            alert(imageDataSrv);
-            fileSystem.root.getFile(imageDataSrv, null, gotFileEntry, fail);
-        }
-        
-        function gotFileEntry(fileEntry) {
-            alert('gotFileEntry');
-            fileEntry.file(gotFile, fail);
-        }
-        
-        function gotFile(file){
-            alert('gotFile');
-            readDataUrl(file);
-        }
-        
-        function fail(){alert('failed');}
-        
-        function readDataUrl(file) {
-            alert('readDataUrl');
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {
-                console.log("Read as data URL");
-                console.log(evt.target.result);
-            };
-           imageDataSrvDataUri = reader.readAsDataURL(file);
-        }
-        */
-        function onSubmit()
-        {
-            alert('Data has been stored successfully!');
-            var elLatitude = document.getElementById('txtLatitude');
-            var elLongitude = document.getElementById('txtLongitude');
-            var txtHosipital = document.getElementById('txtHosipital');
-            var txtAddress1 = document.getElementById('txtAddress1');
-            var txtAddress2 = document.getElementById('txtAddress2');
-            elLatitude.value ='';
-            elLongitude.value ='';
-            txtHosipital.value ='';
-            txtAddress1.value ='';
-            txtAddress2.value ='';
-            var elCameraPic = document.getElementById('imgHospital');
-            elCameraPic.style.width = '120px';
-            elCameraPic.src = 'assets/img/camera.png';
-        }
+
     </script>
 </head>
 <body>
