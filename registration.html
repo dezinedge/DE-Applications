@@ -109,7 +109,7 @@
         function onError(){alert('error occured');}
         
         function capturePhoto(){
-            navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
+            navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
         }
         
         function onPhotoURISuccess(imageURI){
