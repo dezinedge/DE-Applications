@@ -123,6 +123,7 @@
         
         function gotFS(fileSystem) {
             alert('gotFS');
+            alert(imageDataSrv);
             fileSystem.root.getFile(imageDataSrv, null, gotFileEntry, fail);
         }
         
