@@ -16,6 +16,7 @@
     <script type="text/javascript">
         var pictureSource;   // picture source
         var destinationType; // sets the format of returned value
+        var imageDataSrv;
         
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -36,13 +37,14 @@
             var elLongitude = document.getElementById('txtLongitude');
             var txtHosipital = document.getElementById('txtHosipital');
             var txtAddress1 = document.getElementById('txtAddress1');
-            var txtAddress2 = document.getElementById('txtAddress2'); 
+            var txtAddress2 = document.getElementById('txtAddress2');
+            var DbImage = document.getElementById('imgHospital');  
                
             $.ajax({
                	url: 'http://aurangabadcitycare.com/index.php',
                 type: 'POST',
                 data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
-                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:"",pDbTypeId:ddlTypes.value },
+                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:DbImage.src,pDbTypeId:ddlTypes.value },
                 datatype: 'application/json',
                 success: function(msg) {
                     alert('Data has been stored successfully!');
@@ -104,7 +106,17 @@
         function onError(){alert('error occured');}
         
         function capturePhoto(){
-            navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
+            //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI });
+            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:60 });
+        }
+        
+        function onPhotoDataSuccess(imageData)
+        {
+            imageDataSrv = imageData;
+            alert('image uploaded success');
+            var elCameraPic = document.getElementById('imgHospital');
+            elCameraPic.style.display = 'block';
+            elCameraPic.src = "data:image/jpeg;base64," + imageData;
         }
         
         function onPhotoURISuccess(imageURI){
