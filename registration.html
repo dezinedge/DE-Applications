@@ -75,7 +75,8 @@
                var obj = jQuery.parseJSON(msg);
                var ddldata = '';  
                $.each(obj,function(idx,db){
-                    if(idx == 0){
+                    
+                    if(idx === 0){
                         ddldata += '<option value="'+db.data.DbTypeId+'" selected="selected">'+db.data.DbType+'</option>';
                     }
                     else
@@ -84,6 +85,8 @@
                     }
                }); 
                $("#ddlTypes").html(ddldata);
+               
+               
             },
             error: function() { 
                alert('error');     
@@ -108,7 +111,7 @@
         
         function capturePhoto(){
             //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
-            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:20,destinationType: Camera.DestinationType.DATA_URL, 
+            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:30,destinationType: Camera.DestinationType.DATA_URL, 
             targetWidth: 200,targetHeight: 200,allowEdit: true});
         }
         
@@ -142,7 +145,7 @@
             <form>
                 <ul data-role="listview" data-inset="true">
                     
-                    <img id="imgHospital" id="imgHospital" src="assets/img/camera.jpg" style="width: 90%;height:300px;padding: 20px;" onclick="capturePhoto();" />
+                    <img id="imgHospital" id="imgHospital" src="assets/img/camera.png" style="width: 92%;height:300px;padding: 20px;" onclick="capturePhoto();" />
                      
                      <li data-role="fieldcontain">
                     <select id="ddlTypes" name="ddlTypes" data-native-menu="true" style="width: 100%;"></select>
