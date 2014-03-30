@@ -16,7 +16,7 @@
     <script type="text/javascript">
         var pictureSource;   // picture source
         var destinationType; // sets the format of returned value
-        var imageDataSrv;var imageDataSrvDataUri;
+        var imageDataSrv;
         
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -107,7 +107,14 @@
         
         function capturePhoto(){
             //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
-            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:60,destinationType: Camera.DestinationType.DATA_URL });
+            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:60,destinationType: Camera.DestinationType.DATA_URL
+              allowEdit : true,
+              encodingType: Camera.EncodingType.JPEG,
+              targetWidth: 100,
+              targetHeight: 100,
+              popoverOptions: CameraPopoverOptions,
+              saveToPhotoAlbum: false
+            });
         }
         
         function onPhotoURISuccess(imageURI){
