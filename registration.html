@@ -108,7 +108,7 @@
         function capturePhoto(){
             //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
             navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:20,destinationType: Camera.DestinationType.DATA_URL, 
-            targetWidth: 200,targetHeight: 200,allowEdit = true});
+            targetWidth: 200,targetHeight: 200,allowEdit: true});
         }
         
         function onPhotoURISuccess(imageURI){
