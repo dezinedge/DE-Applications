@@ -25,7 +25,7 @@
         {   
              var pPassword = document.getElementById('pPassword');
              
-            if(ValidatioUser(pPassword)){
+            if(ValidatioUser(pPassword.value)){
                 var pUserName = document.getElementById('pUserName');
                 var pContactNo = document.getElementById('pContactNo');
                         
@@ -81,7 +81,8 @@
                     <input type="text" name="pUserName" id="pUserName" data-clear-btn="true" placeholder="Type your name here..." 
                     style="width: 100%;" />
                     </li>
-                    <input type="text" name="pPassword" id="pPassword" data-clear-btn="true" placeholder="Type password here..." 
+                    <li data-role="fieldcontain">
+                    <input type="password" name="pPassword" id="pPassword" data-clear-btn="true" placeholder="Type password here..." 
                     style="width: 100%;" />
                     </li>
                     <li data-role="fieldcontain">

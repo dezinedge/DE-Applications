@@ -32,34 +32,60 @@
         
         function AddDatabase()
         {   
-            var ddlTypes = document.getElementById('ddlTypes');
-            var elLatitude = document.getElementById('txtLatitude');
-            var elLongitude = document.getElementById('txtLongitude');
-            var txtHosipital = document.getElementById('txtHosipital');
-            var txtAddress1 = document.getElementById('txtAddress1');
-            var txtAddress2 = document.getElementById('txtAddress2');
-                    
+            
+            if(CheckUser(device.uuid)){
+                  var ddlTypes = document.getElementById('ddlTypes');
+                    var elLatitude = document.getElementById('txtLatitude');
+                    var elLongitude = document.getElementById('txtLongitude');
+                    var txtHosipital = document.getElementById('txtHosipital');
+                    var txtAddress1 = document.getElementById('txtAddress1');
+                    var txtAddress2 = document.getElementById('txtAddress2');
+                            
+                    $.ajax({
+                       	url: 'http://aurangabadcitycare.com/index.php',
+                        type: 'POST',
+                        data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
+                            pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:imageDataSrv,pDbTypeId:ddlTypes.value,pUdid:device.uuid },
+                        datatype: 'application/json',
+                        success: function(msg) {
+                            alert('Data has been stored successfully!');
+                            elLatitude.value ='';
+                            elLongitude.value ='';
+                            txtHosipital.value ='';
+                            txtAddress1.value ='';
+                            txtAddress2.value ='';
+                            var elCameraPic = document.getElementById('imgHospital');
+                            elCameraPic.style.width = '120px';
+                            elCameraPic.src = 'assets/img/camera.png';
+                            ddlTypes.value = -1;
+                        },
+                        error: function() { alert('Failed!'); },
+                	    crossDomain: true
+                	});      
+            }
+            else
+            {
+                alert('Create your profile first in order to start enteries');
+            }
+            
+          
+        }
+        
+        
+        function CheckUser(prUsersId)
+        {
+            result = 0;
             $.ajax({
-               	url: 'http://aurangabadcitycare.com/index.php',
+               	url: 'http://aurangabadcitycare.com/checkusers.php',
                 type: 'POST',
-                data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
-                    pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:imageDataSrv,pDbTypeId:ddlTypes.value,pUdid:device.uuid },
+                data: { pUsersId:prUsersId},
                 datatype: 'application/json',
-                success: function(msg) {
-                    alert('Data has been stored successfully!');
-                    elLatitude.value ='';
-                    elLongitude.value ='';
-                    txtHosipital.value ='';
-                    txtAddress1.value ='';
-                    txtAddress2.value ='';
-                    var elCameraPic = document.getElementById('imgHospital');
-                    elCameraPic.style.width = '120px';
-                    elCameraPic.src = 'assets/img/camera.png';
-                    ddlTypes.value = -1;
-                },
+                success: function(msg) { result = msg); },
                 error: function() { alert('Failed!'); },
         	    crossDomain: true
-        	});
+  	     });
+         
+            return if(result > 0);
         }
         
         function FillDropdown()
