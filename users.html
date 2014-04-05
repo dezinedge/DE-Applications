@@ -26,6 +26,7 @@
              var pPassword = document.getElementById('pPassword');
              
             if(ValidateUser(pPassword.value)){
+                
                 var pUserName = document.getElementById('pUserName');
                 var pContactNo = document.getElementById('pContactNo');
                         
@@ -55,9 +56,10 @@
             $.ajax({
                	url: 'http://aurangabadcitycare.com/validate.php',
                 type: 'POST',
+                async: false,
                 data: { pPassword:prPassword},
                 datatype: 'application/json',
-                success: function(msg) { result = msg); },
+                success: function(msg) { result = msg; },
                 error: function() { alert('Failed!'); },
         	    crossDomain: true
   	     });
