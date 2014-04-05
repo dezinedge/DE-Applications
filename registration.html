@@ -60,7 +60,8 @@
                             ddlTypes.value = -1;
                         },
                         error: function() { alert('Failed!'); },
-                	    crossDomain: true
+                	    crossDomain: true,
+                        async: false,
                 	});      
             }
             else
@@ -75,6 +76,7 @@
         function CheckUser(prUsersId)
         {
             result = 0;
+            
             $.ajax({
                	url: 'http://aurangabadcitycare.com/checkusers.php',
                 type: 'POST',
@@ -84,9 +86,9 @@
                 success: function(msg) { result = msg; },
                 error: function() { alert('Failed!'); },
         	    crossDomain: true
-  	     });
+  	         });
          
-         
+            
             if(result > 0){return true;}
             else{return false;}
         }
