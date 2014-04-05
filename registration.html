@@ -78,6 +78,7 @@
             $.ajax({
                	url: 'http://aurangabadcitycare.com/checkusers.php',
                 type: 'POST',
+                async: false,
                 data: { pUsersId:prUsersId},
                 datatype: 'application/json',
                 success: function(msg) { result = msg; },
@@ -85,7 +86,9 @@
         	    crossDomain: true
   	     });
          
-            return if(result > 0);
+         
+            if(result > 0){return true;}
+            else{return false;}
         }
         
         function FillDropdown()
