@@ -29,7 +29,7 @@
         {
             var lstData = '';  
             var pDbTypeId = document.getElementById('ddlTypes');
-             $("#ulEnteries").html(lstData);
+             $('#ulEnteries').append(lstData).listview('refresh');
         
             $.ajax({
                	url: 'http://aurangabadcitycare.com/getenteries.php',
