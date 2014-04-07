@@ -56,7 +56,7 @@
                             txtAddress1.value ='';
                             txtAddress2.value ='';
                             var elCameraPic = document.getElementById('imgHospital');
-                            elCameraPic.src = 'assets/img/camera.png';
+                            elCameraPic.style.display = 'none';
                             ddlTypes.value = -1;
                         },
                         error: function() { alert('Failed!'); },
@@ -155,8 +155,9 @@
         {
             var image = document.getElementById('imgHospital');
             image.src = "data:image/jpeg;base64," + imageData;
+            elCameraPic.style.display = 'block';
+            elCameraPic.style.width = '100%';
             imageDataSrv = imageData;
-            alert('works');
         }
 
     </script>
