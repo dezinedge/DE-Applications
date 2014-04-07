@@ -40,12 +40,13 @@
                     var txtHosipital = document.getElementById('txtHosipital');
                     var txtAddress1 = document.getElementById('txtAddress1');
                     var txtAddress2 = document.getElementById('txtAddress2');
-                         
+                    var txtPhoneNo = document.getElementById('txtPhoneNo');
+                    
                     $.ajax({
                        	url: 'http://aurangabadcitycare.com/index.php',
                         type: 'POST',
                         data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
-                            pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:imageDataSrv,pDbTypeId:ddlTypes.value,pUdid:device.uuid },
+                            pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:imageDataSrv,pDbTypeId:ddlTypes.value,pUdid:device.uuid,pPhoneNo:txtPhoneNo.value },
                         datatype: 'application/json',
                         success: function(msg) {
                             alert('Data has been stored successfully!');
@@ -55,7 +56,6 @@
                             txtAddress1.value ='';
                             txtAddress2.value ='';
                             var elCameraPic = document.getElementById('imgHospital');
-                            elCameraPic.style.width = '120px';
                             elCameraPic.src = 'assets/img/camera.png';
                             ddlTypes.value = -1;
                         },
@@ -68,8 +68,6 @@
             {
                 alert('Create your profile first in order to start enteries');
             }
-            
-          
         }
         
         
@@ -140,14 +138,14 @@
         
         function capturePhoto(){
             //navigator.camera.getPicture(onPhotoURISuccess,null,{sourceType:1,quality:60,destinationType: destinationType.FILE_URI,saveToPhotoAlbum: true });
-            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:30,destinationType: Camera.DestinationType.DATA_URL, 
-            targetWidth: 200,targetHeight: 200,allowEdit: true});
+            navigator.camera.getPicture(onPhotoDataSuccess,null,{sourceType:1,quality:50,destinationType: Camera.DestinationType.DATA_URL, allowEdit: true});
         }
         
         function onPhotoURISuccess(imageURI){
             alert('image uploaded success');
             var elCameraPic = document.getElementById('imgHospital');
             elCameraPic.style.display = 'block';
+            elCameraPic.style.width = '100%';
             elCameraPic.src = imageURI;
             imageDataSrv = imageURI;
             //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
@@ -174,8 +172,12 @@
             <form>
                 <ul data-role="listview" data-inset="true">
                     
-                    <img id="imgHospital" id="imgHospital" src="assets/img/camera.png" style="width: 92%;height:300px;padding: 20px;" onclick="capturePhoto();" />
+                    <img id="imgHospital" id="imgHospital" style="display: none;"/>
                      
+                    <li data-role="fieldcontain">
+                    <input type="button" name="btnSave" id="btnSave" value="Upload Picture" data-clear-btn="true" onclick="capturePhoto();"/>
+                    </li>
+                    
                      <li data-role="fieldcontain">
                     <select id="ddlTypes" name="ddlTypes" data-native-menu="true" style="width: 100%;"></select>
                     </li>
@@ -189,6 +191,10 @@
                     </li>
                      <li data-role="fieldcontain">
                         <textarea cols="40" rows="8" name="txtAddress2" id="txtAddress2" placeholder="Type Address 2 here..." style="width: 100%;"></textarea>
+                    </li>
+                     <li data-role="fieldcontain">
+                        <input type="text" name="txtPhoneNo" id="txtPhoneNo" data-clear-btn="true" placeholder="Enter phone no here..." 
+                    style="width: 100%;" />
                     </li>
                     <li data-role="fieldcontain">
                         <input type="button" onclick="GetLocation();" name="btnGetLocation" id="btnGetLocation" value="Get Location" data-clear-btn="true" title="Type hospital name here..."/>
@@ -212,8 +218,8 @@
                 data-theme='b'>
                 <div data-role="navbar">
                     <ul>
-                         <li><a href="index.html" data-icon="home" data-ajax="false">Citycare</a></li>
-                         <li><a href="users.html" data-icon="user" data-ajax="false">Profile</a></li>
+                         <li><a href="index.html" data-icon="home" data-ajax="false">Home</a></li>
+                        <li><a href="enteries.html" data-icon="hospital" data-ajax="false">Enteries</a></li>
                     </ul>
                 </div>
             </div>
