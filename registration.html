@@ -55,8 +55,9 @@
                             txtHosipital.value ='';
                             txtAddress1.value ='';
                             txtAddress2.value ='';
+                            txtPhoneNo.value = '';
                             var elCameraPic = document.getElementById('imgHospital');
-                            elCameraPic.style.display = 'none';
+                            elCameraPic.src = '';
                             ddlTypes.value = -1;
                         },
                         error: function() { alert('Failed!'); },
@@ -173,7 +174,7 @@
             <form>
                 <ul data-role="listview" data-inset="true">
                     
-                    <img id="imgHospital" id="imgHospital" style="display: none;"/>
+                    <img id="imgHospital" id="imgHospital" />
                      
                     <li data-role="fieldcontain">
                     <input type="button" name="btnSave" id="btnSave" value="Upload Picture" data-clear-btn="true" onclick="capturePhoto();"/>
