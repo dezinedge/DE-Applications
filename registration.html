@@ -30,34 +30,39 @@
             
         }
         
+        function clearControl()
+        {
+            $("#ddlTypes").val(-1);
+            $("#txtLatitude").val("");
+            $("#txtLongitude").val("");
+            $("#txtHosipital").val("");
+            $("#txtAddress1").val("");
+            $("#txtAddress2").val("");
+            $("#txtPhoneNo").val("");
+            $("#imgHospital").attr("src","");
+        }
+        
         function AddDatabase()
         {   
             if(CheckUser(device.uuid)){
-                  var ddlTypes = document.getElementById('ddlTypes');
-                    var elLatitude = document.getElementById('txtLatitude');
-                    var elLongitude = document.getElementById('txtLongitude');
-                    var txtHosipital = document.getElementById('txtHosipital');
-                    var txtAddress1 = document.getElementById('txtAddress1');
-                    var txtAddress2 = document.getElementById('txtAddress2');
-                    var txtPhoneNo = document.getElementById('txtPhoneNo');
+                
+                    vlTypes = $("#ddlTypes").val();
+                    vlLatitude = $("#txtLatitude").val();
+                    vlLongitude = $("#txtLongitude").val();
+                    vlHosipital = $("#txtHosipital").val();
+                    vlAddress1 = $("#txtAddress1").val();
+                    vlAddress2 = $("#txtAddress2").val();
+                    vlPhoneNo = $("#txtPhoneNo").val();
                     
                     $.ajax({
                        	url: 'http://aurangabadcitycare.com/index.php',
                         type: 'POST',
-                        data: { pDbName:txtHosipital.value, pDbAddress1:txtAddress1.value, pDbAddress2:txtAddress2.value,
-                            pLatitude:elLatitude.value,pLongitude:elLongitude.value ,pDbImage:imageDataSrv,pDbTypeId:ddlTypes.value,pUdid:device.uuid,pPhoneNo:txtPhoneNo.value },
+                        data: { pDbName:vlHosipital, pDbAddress1:vlAddress1, pDbAddress2:vlAddress2,
+                            pLatitude:vlLatitude,pLongitude:vlLongitude ,pDbImage:imageDataSrv,pDbTypeId:vlTypes,pUdid:device.uuid,pPhoneNo:vlPhoneNo },
                         datatype: 'application/json',
                         success: function(msg) {
                             alert('Data has been stored successfully!');
-                            elLatitude.value ='';
-                            elLongitude.value ='';
-                            txtHosipital.value ='';
-                            txtAddress1.value ='';
-                            txtAddress2.value ='';
-                            txtPhoneNo.value = '';
-                            var elCameraPic = document.getElementById('imgHospital');
-                            elCameraPic.src = '';
-                            ddlTypes.value = -1;
+                            clearControl();
                         },
                         error: function() { alert('Failed!'); },
                 	    crossDomain: true,
@@ -128,10 +133,8 @@
         }
         
         function onSuccess(position) {
-            var elLatitude = document.getElementById('txtLatitude');
-            var elLongitude = document.getElementById('txtLongitude');
-            elLatitude.value = position.coords.latitude;
-            elLongitude.value = position.coords.longitude;
+            $("#txtLatitude").val(position.coords.latitude);
+            $("#txtLongitude").val(position.coords.longitude);
         }
         
         function onError(){alert('error occured');}
@@ -143,20 +146,18 @@
         
         function onPhotoURISuccess(imageURI){
             alert('image uploaded success');
-            var elCameraPic = document.getElementById('imgHospital');
-            elCameraPic.style.display = 'block';
-            elCameraPic.style.width = '100%';
-            elCameraPic.src = imageURI;
+            $("#imgHospital").attr("src",imageURI);
+            $("#imgHospital").css("width","200px");
+            $("#imgHospital").css("height","150px");
             imageDataSrv = imageURI;
             //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
         }
         
         function onPhotoDataSuccess(imageData)
         {
-            var image = document.getElementById('imgHospital');
-            image.src = "data:image/jpeg;base64," + imageData;
-            elCameraPic.style.display = 'block';
-            elCameraPic.style.width = '100%';
+            $("#imgHospital").attr("src","data:image/jpeg;base64," + imageData);
+            $("#imgHospital").css("width","200px");
+            $("#imgHospital").css("height","150px");
             imageDataSrv = imageData;
         }
 
